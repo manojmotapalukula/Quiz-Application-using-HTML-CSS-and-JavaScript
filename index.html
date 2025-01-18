@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Project</title>
+    <style>
+        body{
+            border: 0;
+            margin: 0;
+            box-sizing: border-box;
+            background-color: black;
+            font-family: sans-serif;
+            color: white;
+        }
+        .heading{
+            background-color: rgb(72, 68, 68);
+            text-align: center;
+            height: 30px;
+            padding: 5px;
+        }
+        .progress{
+            background: rgb(72, 68, 68);
+            height: 18px;
+            width: 60%;
+            border-radius: 10px;
+            margin: 0 auto;
+            display: flex;
+        }
+        .qnum{
+            width: 10%;
+            height: 100%;
+        }
+        .qnum1{
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+        }
+        .qnum10{
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+        #q1{
+            background: rgb(53, 156, 53);
+        }
+        .quiz{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .questiondiv{
+            border: 2px solid white;
+            width: 30%;
+            height: 210px;
+            margin: 5px;
+            border-radius: 5px;
+            padding: 5px;
+        }
+        #question{
+            margin-left: 10px;
+        }
+        #options{
+            border: 2px solid white;
+            width: 30%;
+            height: 200px;
+            margin: 5px;
+            border-radius: 5px;
+            display: flex;
+            flex-direction: column;
+            padding: 5px;
+            padding-top: 15px;
+        }
+        button{
+            background-color: rgb(72, 68, 68);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            margin: 5px;
+            padding: 10px;
+            cursor: pointer;
+        }
+        button:hover{
+            background-color: rgb(113, 110, 110);
+            color: white;
+        }
+        #result{
+            text-align: center;
+            margin-top: 20px;
+            font-size: 20px;
+        }
+
+        
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="heading">HTML, CSS & JS Quiz</h2>
+        <div class="progress">
+            <!-- Creating 10 sections for each question -->
+            <div class="qnum qnum1" id="q1"></div>
+            <div class="qnum" id="q2"></div>
+            <div class="qnum" id="q3"></div>
+            <div class="qnum" id="q4"></div>
+            <div class="qnum" id="q5"></div>
+            <div class="qnum" id="q6"></div>
+            <div class="qnum" id="q7"></div>
+            <div class="qnum" id="q8"></div>
+            <div class="qnum" id="q9"></div>
+            <div class="qnum qnum10" id="q10"></div>
+        </div>
+        <div class="quiz">
+            <div class="questiondiv">
+                <p id="question">Question displays here</p>
+            </div>
+            <div id="options"></div>
+        </div>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                question: "What does HTML stand for?",
+                answer: [
+                    { text: "Hyper Text Markup Language", correct: "true" },
+                    { text: "Hyperlink Text Markup Language", correct: "false" },
+                    { text: "Home Tool Markup Language", correct: "false" },
+                    { text: "Hyper Text Manipulation Language", correct: "false" }
+                ]
+            },
+            
+            {
+                question: "Which CSS property is used to change the background color of an element?",
+                answer: [
+                    { text: "color", correct: "false" },
+                    { text: "background-color", correct: "true" },
+                    { text: "bgcolor", correct: "false" },
+                    { text: "font-color", correct: "false" }
+                ]
+            },
+            {
+                question: "In JavaScript, which operator is used to assign a value to a variable?",
+                answer: [
+                    { text: "=", correct: "true" },
+                    { text: "+", correct: "false" },
+                    { text: "==", correct: "false" },
+                    { text: "=>", correct: "false" }
+                ]
+            },
+            {
+                question: "Which JavaScript method is used to write text to the HTML document?",
+                answer: [
+                    { text: "document.write()", correct: "true" },
+                    { text: "console.log()", correct: "false" },
+                    { text: "alert()", correct: "false" },
+                    { text: "document.print()", correct: "false" }
+                ]
+            },
+            {
+                question: "What is the purpose of the 'this' keyword in JavaScript?",
+        answer: [
+            { text: "Refers to the global object", correct: "false" },
+            { text: "Refers to the current function", correct: "false" },
+            { text: "Refers to the current object", correct: "true" },
+            { text: "Refers to the window object", correct: "false" }
+        ]
+            },
+            {
+                question: "Which property is used to change the font of an element in CSS?",
+                answer: [
+                    { text: "font-family", correct: "true" },
+                    { text: "font-style", correct: "false" },
+                    { text: "text-font", correct: "false" },
+                    { text: "font-weight", correct: "false" }
+                ]
+            },
+            {
+                question: "In JavaScript, what is the correct syntax to create a variable?",
+                answer: [
+                    { text: "var myVar;", correct: "true" },
+                    { text: "variable myVar;", correct: "false" },
+                    { text: "myVar = 10;", correct: "false" },
+                    { text: "let var myVar;", correct: "false" }
+                ]
+            },
+            {
+                question: "Which HTML element is used to define a hyperlink?",
+                answer: [
+                    { text: "&ltlink&gt", correct: "false" },
+                    { text: "&lta&gt", correct: "true" },
+                    { text: "&lthref&gt", correct: "false" },
+                    { text: "&ltbutton&gt", correct: "false" }
+                ]
+            },
+            {
+                question: "How do you add a comment in JavaScript?",
+                answer: [
+                    { text: "// This is a comment", correct: "true" },
+                    { text: "&lt!-- This is a comment --&gt", correct: "false" },
+                    { text: "/* This is a comment */", correct: "false" },
+                    { text: "/* comment */,", correct: "false" }
+                ]
+            },
+            {
+                question: "What is the purpose of the 'z-index' property in CSS?",
+                answer: [
+                    { text: "Controls the stacking order of elements", correct: "true" },
+                    { text: "Changes the font size", correct: "false" },
+                    { text: "Sets the opacity of an element", correct: "false" },
+                    { text: "Defines the background image", correct: "false" }
+                ]
+            }
+        ];
+
+        let score = 0;
+        let qnum = 0;
+        const totalQuestions = questions.length;
+
+        function loadQuestion() {
+            if (qnum < totalQuestions) {
+                const currentQues = questions[qnum];
+                document.getElementById("question").innerText = currentQues.question;
+
+                const optionsDiv = document.getElementById("options");
+                optionsDiv.innerHTML = "";  // Clear previous options
+
+                currentQues.answer.forEach(ans => {
+                    const item = document.createElement("button");
+                    item.innerHTML = ans.text;
+                    item.classList.add("opt");
+                    item.onclick = () => checkAnswer(ans.correct, item);
+                    optionsDiv.appendChild(item);
+                });
+
+                updateProgress();
+            } else {
+                showResult();
+            }
+        }
+
+        function checkAnswer(correct, btn) {
+            if (correct === "true") {
+                score += 10;
+                btn.style.backgroundColor = "green";
+            } else {
+                btn.style.backgroundColor = "red";
+            }
+            setTimeout(() => {
+                qnum++;
+                loadQuestion();
+            }, 1000);
+        }
+
+        function updateProgress() {
+            const progress = Math.floor((qnum / totalQuestions) * 100);
+            const progressBar = document.getElementById(`q${qnum + 1}`);
+            progressBar.style.backgroundColor = "green";  // Fill up the progress bar
+
+        }
+
+        function showResult() {
+            const resultDiv = document.getElementById("result");
+            if (score > 40) {
+                resultDiv.innerHTML = `Congratulations! You passed with ${score} marks.`;
+            } else {
+                resultDiv.innerHTML = `You failed. Your score is ${score}. <br><button onclick="restartQuiz()">Retry</button>`;
+            }
+        }
+
+        function restartQuiz() {
+            score = 0;
+            qnum = 0;
+            document.getElementById("result").innerHTML = "";
+            document.querySelectorAll('.qnum').forEach(q => q.style.backgroundColor = "");  // Reset progress bar
+            loadQuestion();
+        }
+
+        loadQuestion();
+
+    </script>
+</body>
+</html>
